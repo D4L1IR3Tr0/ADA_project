@@ -15,7 +15,7 @@
 10. [Cheat Sheet](#cheat-sheet)
 
 ## Introduction
-**! The ADA project is still under development, and this is version 1.0 !**
+**! The adaL project is still under development, and this is version 1.0 !**
 
 adaL is a simple, intuitive programming language designed for educational purposes. It combines familiar syntax with powerful features like structures and modules.
 
