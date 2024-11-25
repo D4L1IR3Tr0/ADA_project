@@ -17,17 +17,17 @@
 ## Introduction
 **! The ADA project is still under development, and this is version 1.0 !**
 
-ADA is a simple, intuitive programming language designed for educational purposes. It combines familiar syntax with powerful features like structures and modules.
+adaL is a simple, intuitive programming language designed for educational purposes. It combines familiar syntax with powerful features like structures and modules.
 
 ## Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/ada-language.git
+git clone https://github.com/D4L1IR3Tr0/ADA_project.git
 
-# Run an ADA program
+# Run an adaL program
 python3 interpreter.py program.ada
 
-# To install VSCODE extension for ADA
+# To install VSCODE extension for adaL
 cd extentionVSCODE
 chmod +x install.sh
 ./install.sh
@@ -36,7 +36,7 @@ chmod +x install.sh
 ## Language Basics
 
 ### Comments
-```ada
+```adaL
 -- Single line comment
 -* Multi-line
    comment *-
@@ -58,7 +58,7 @@ chmod +x install.sh
 - `array`: Arrays of values
 
 ### Type Declaration
-```ada
+```adaL
 int x <- 5
 string name <- "John"
 bool isValid <- true
@@ -66,7 +66,7 @@ double price <- 3.14
 ```
 
 ### Arrays
-```ada
+```adaL
 int[] numbers <- [1, 2, 3, 4, 5]
 int value <- numbers[0]  -- Access first element
 ```
@@ -74,7 +74,7 @@ int value <- numbers[0]  -- Access first element
 ## Variables
 
 ### Declaration and Assignment
-```ada
+```adaL
 -- Declaration with initialization
 int age <- 25
 
@@ -89,7 +89,7 @@ x <- y  -- x now equals 2
 ```
 
 ### Compound Assignments
-```ada
+```adaL
 x += 5   -- Same as: x <- x + 5
 x -= 3   -- Same as: x <- x - 3
 x *= 2   -- Same as: x <- x * 2
@@ -99,7 +99,7 @@ x /= 4   -- Same as: x <- x / 4
 ## Control Structures
 
 ### If Statement
-```ada
+```adaL
 if (condition):
     -- code
 else:
@@ -110,28 +110,28 @@ else:
 ### Loops
 
 #### Range Loop
-```ada
+```adaL
 loop [0..5]:
     write("Hello")
 /.
 ```
 
 #### Iterator Loop
-```ada
+```adaL
 loop i in [0..5]:
     write(i)
 /.
 ```
 
 #### While Loop
-```ada
+```adaL
 loop (condition):
     -- code
 /.
 ```
 
 #### For Each Loop
-```ada
+```adaL
 loop item in array:
     write(item)
 /.
@@ -140,7 +140,7 @@ loop item in array:
 ## Functions
 
 ### Function Definition
-```ada
+```adaL
 define add(a, b):
     out(a + b)
 /.
@@ -152,7 +152,7 @@ define greet(name <- "World"):
 ```
 
 ### Function Call
-```ada
+```adaL
 add(5, 3)
 greet()
 greet("John")
@@ -161,7 +161,7 @@ greet("John")
 ## Structures
 
 ### Structure Definition
-```ada
+```adaL
 make person:
     int age
     string name
@@ -169,7 +169,7 @@ make person:
 ```
 
 ### Structure Usage
-```ada
+```adaL
 -- Create instance
 person p <- person(25, "John")
 
@@ -186,7 +186,7 @@ p.age <- 26
 - **math.ada**
 - **io.ada**
 ### Module Creation (math.ada)
-```ada
+```adaL
 -- math.ada
 define square(x):
     out(x * x)
@@ -198,7 +198,7 @@ define cube(x):
 ```
 
 ### Module Import and Usage
-```ada
+```adaL
 @import <math.ada> as math
 
 write(math.square(4))  -- Outputs: 16
@@ -208,7 +208,7 @@ write(math.cube(3))    -- Outputs: 27
 ## Cheat Sheet
 
 ### Basic Syntax
-```ada
+```adaL
 -- Variables
 int x <- 5
 string name <- "John"
@@ -266,7 +266,7 @@ make structName:
 ```
 
 ### Common Functions
-```ada
+```adaL
 -- Mathematical
 math.pow(base, exp)    -- Power
 math.sqrt(x)           -- Square root
@@ -310,5 +310,5 @@ value <- read("Enter value: ")    -- Read input
 5. Test functions individually
 6. Use meaningful error messages
 
-This documentation provides a comprehensive guide to the ADA language. For more specific use cases or advanced features, please refer to the individual sections or contact the language maintainers.
+This documentation provides a comprehensive guide to the adaL language. For more specific use cases or advanced features, please refer to the individual sections or contact me.
 
