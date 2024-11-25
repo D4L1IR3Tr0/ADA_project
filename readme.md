@@ -1,8 +1,6 @@
 # ada-L - A Modern Tribute to Lovelace
 
-<div style="text-align: center;">
-   ![Logo](logo.png)
-</div>
+![Logo](logo.png)
 
 
 #   Language Documentation
