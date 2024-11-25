@@ -1,0 +1,1 @@
+write("ceci est un nombre " + 123)

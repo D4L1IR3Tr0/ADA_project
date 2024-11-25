@@ -1,0 +1,54 @@
+{
+    "name": "ADA",
+    "scopeName": "source.ada",
+    "patterns": [
+        {
+            "match": "--.*$",
+            "name": "comment.line.double-dash.ada"
+        },
+        {
+            "begin": "-\\*",
+            "end": "\\*-",
+            "name": "comment.block.ada"
+        },
+        {
+            "match": "\\b(int|string|bool|double|float|void)\\b",
+            "name": "storage.type.ada"
+        },
+        {
+            "match": "\\b(if|else|loop|define|make|out|in)\\b",
+            "name": "keyword.control.ada"
+        },
+        {
+            "match": "\\b(write|read|convert|exists|true|false)\\b",
+            "name": "support.function.ada"
+        },
+        {
+            "match": "@import\\b",
+            "name": "keyword.control.import.ada"
+        },
+        {
+            "match": "\\b\\d+\\b",
+            "name": "constant.numeric.ada"
+        },
+        {
+            "begin": "\"",
+            "end": "\"",
+            "name": "string.quoted.double.ada",
+            "patterns": [
+                {
+                    "match": "\\\\.",
+                    "name": "constant.character.escape.ada"
+                }
+            ]
+        },
+        {
+            "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b",
+            "name": "variable.other.ada"
+        },
+        {
+            "match": "(<-|\\+|-|\\*|/|%|==|!=|<|>|<=|>=|&&|\\|\\|)",
+            "name": "keyword.operator.ada"
+        }
+    ]
+}

@@ -1,0 +1,223 @@
+-- Constants mathématiques
+double PI <- 3.14159265359
+double E <- 2.71828182845
+double EPSILON <- 0.00001
+
+-- Fonctions de base
+define pow(base, exp):
+    int result <- 1
+    int i <- 0
+    loop (i < exp):
+        result *= base
+        i += 1
+    /.
+    out(result)
+/.
+
+define abs(x):
+    if (x < 0):
+        out(-x)
+    else:
+        out(x)
+    /.
+/.
+
+define sqrt(x):
+    double result <- x / 2
+    double prev <- 0
+    
+    loop (abs(result - prev) > EPSILON):
+        prev <- result
+        result <- (result + x/result) / 2
+    /.
+    
+    out(result)
+/.
+
+define floor(x):
+    out(int(x - (x % 1)))
+/.
+
+define ceil(x):
+    if (x % 1 == 0):
+        out(x)
+    else:
+        out(int(x) + 1)
+    /.
+/.
+
+-- Fonctions trigonométriques
+-- Utilise la série de Taylor pour les approximations
+
+define sin(x):
+    -- Normaliser x dans [-2π, 2π]
+    x <- x % (2 * PI)
+    
+    double result <- 0
+    double term <- x
+    int n <- 1
+    
+    -- Série de Taylor pour sin(x)
+    loop (abs(term) > EPSILON):
+        result <- result + term
+        term <- -term * x * x / ((2 * n) * (2 * n + 1))
+        n += 1
+    /.
+    
+    out(result)
+/.
+
+define cos(x):
+    -- Normaliser x dans [-2π, 2π]
+    x <- x % (2 * PI)
+    
+    double result <- 1
+    double term <- 1
+    int n <- 1
+    
+    -- Série de Taylor pour cos(x)
+    loop (abs(term) > EPSILON):
+        term <- -term * x * x / ((2 * n - 1) * (2 * n))
+        result <- result + term
+        n += 1
+    /.
+    
+    out(result)
+/.
+
+define tan(x):
+    double s <- sin(x)
+    double c <- cos(x)
+    
+    if (abs(c) < EPSILON):
+        out(999999)  -- Représentation de l'infini
+    else:
+        out(s / c)
+    /.
+/.
+
+-- Fonctions exponentielles et logarithmiques
+define exp(x):
+    double result <- 1
+    double term <- 1
+    int n <- 1
+    
+    loop (abs(term) > EPSILON):
+        term <- term * x / n
+        result <- result + term
+        n += 1
+    /.
+    
+    out(result)
+/.
+
+define ln(x):
+    if (x <= 0):
+        out(-999999)  -- Représentation de -∞ pour x ≤ 0
+        return
+    /.
+    
+    -- Utilise la méthode de Newton pour ln(x)
+    double result <- x - 1
+    double prev <- 0
+    
+    loop (abs(result - prev) > EPSILON):
+        prev <- result
+        result <- result + 2 * (x - exp(result)) / (x + exp(result))
+    /.
+    
+    out(result)
+/.
+
+-- Fonctions hyperboliques
+define sinh(x):
+    out((exp(x) - exp(-x)) / 2)
+/.
+
+define cosh(x):
+    out((exp(x) + exp(-x)) / 2)
+/.
+
+define tanh(x):
+    double ex <- exp(x)
+    double emx <- exp(-x)
+    out((ex - emx) / (ex + emx))
+/.
+
+-- Fonctions d'arrondi et de manipulation
+define min(x, y):
+    if (x < y):
+        out(x)
+    else:
+        out(y)
+    /.
+/.
+
+define max(x, y):
+    if (x > y):
+        out(x)
+    else:
+        out(y)
+    /.
+/.
+
+define clamp(x, min_val, max_val):
+    if (x < min_val):
+        out(min_val)
+    else:
+        if (x > max_val):
+            out(max_val)
+        else:
+            out(x)
+        /.
+    /.
+/.
+
+-- Fonctions de conversion
+define degrees_to_radians(degrees):
+    out(degrees * PI / 180)
+/.
+
+define radians_to_degrees(radians):
+    out(radians * 180 / PI)
+/.
+
+-- Fonctions spéciales
+define factorial(n):
+    if (n <= 1):
+        out(1)
+    else:
+        int result <- 1
+        int i <- 2
+        
+        loop (i <= n):
+            result *= i
+            i += 1
+        /.
+        
+        out(result)
+    /.
+/.
+
+define gcd(a, b):
+    -- Plus grand commun diviseur
+    a <- abs(a)
+    b <- abs(b)
+    
+    loop (b != 0):
+        int temp <- b
+        b <- a % b
+        a <- temp
+    /.
+    
+    out(a)
+/.
+
+define lcm(a, b):
+    -- Plus petit commun multiple
+    if (a == 0 && b == 0):
+        out(0)
+    else:
+        out(abs(a * b) / gcd(a, b))
+    /.
+/.

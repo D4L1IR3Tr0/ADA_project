@@ -1,0 +1,25 @@
+{
+    "name": "ada-language",
+    "displayName": "ADA Language Support",
+    "description": "Support for ADA programming language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "ada",
+            "aliases": ["ADA", "ada"],
+            "extensions": [".ada"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "ada",
+            "scopeName": "source.ada",
+            "path": "./syntaxes/ada.tmLanguage.json"
+        }]
+    }
+}
