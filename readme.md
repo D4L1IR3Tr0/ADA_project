@@ -1,4 +1,6 @@
-# ADA Language Documentation
+# adaL - A Modern Tribute to Lovelace
+#   Language Documentation
+
 
 ## Table of Contents
 1. [Introduction](#introduction)
