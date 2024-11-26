@@ -10,10 +10,10 @@ define estmajeur(personne x):
     else:
         retour <- false
     /.
-    write(retour)
+    out(retour)
 /.
 
 personne dali
 dali.nom <- "dali"
 dali.age <- 17
-estmajeur(dali)
+write(estmajeur(dali))
