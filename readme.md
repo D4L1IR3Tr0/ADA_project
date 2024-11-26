@@ -71,8 +71,10 @@ double price <- 3.14
 
 ### Arrays
 ```ada-L
-int[] numbers <- [1, 2, 3, 4, 5]
+int numbers <- [1, 2, 3, 4, 5]
 int value <- numbers[0]  -- Access first element
+
+size(numbers) -- return the size of the array work with strings
 ```
 
 ## Variables
@@ -125,6 +127,11 @@ loop [0..5]:
 loop i in [0..5]:
     write(i)
 /.
+
+string array <- ["zero","one","two","three"]
+loop i in [0..size(array)-1]:
+	write("at position : " + i + " we have " + array[i])
+/.
 ```
 
 #### While Loop
@@ -153,6 +160,8 @@ define add(a, b):
 define greet(name <- "World"):
     out("Hello " + name)
 /.
+
+
 ```
 
 ### Function Call
