@@ -10,7 +10,7 @@ define estmajeur(personne x):
     else:
         retour <- false
     /.
-    out retour
+    write(retour)
 /.
 
 personne dali
