@@ -201,8 +201,23 @@ class Interpreter:
             except Exception as e:
                 print(f"Error getting file size: {str(e)}")  # Debug
                 return Value(DataType.INT, -1)
+            
+        def size_fn(args):
+            arg = args[0]
+            if arg.type == DataType.ARRAY:
+                return Value(DataType.INT, len(arg.value))
+            elif arg.type == DataType.STRING:
+                # Enlever les guillemets si présents
+                val = arg.value
+                if val.startswith('"') and val.endswith('"'):
+                    val = val[1:-1]
+                return Value(DataType.INT, len(val))
+            else:
+                raise TypeError("size() requires a string or array argument")
+
 
         # Enregistrement des fonctions
+        self.global_env.define_function("size", size_fn)
         self.global_env.define_function("__internal_exists", internal_exists)
         self.global_env.define_function("__internal_open", internal_open)
         self.global_env.define_function("__internal_close", internal_close)
@@ -594,28 +609,43 @@ class Interpreter:
 
     def visit_Define(self, node):
         func_name = node.leaf['name']
-        
+
         def function(args):
             new_env = Environment(self.current_env)
-            
+
+            # Traitement des paramètres
             param_node = node.children[0]
             if param_node.type == 'Parameters':
                 for i, param in enumerate(param_node.children):
+                    param_type = param.leaf['type']
                     param_name = param.leaf['id']
-                    if i < len(args):
-                        new_env.set(param_name, args[i])
-                    elif 'default' in param.leaf:
-                        default_value = self.visit(param.leaf['default'])
-                        new_env.set(param_name, default_value)
+
+                    if i >= len(args):
+                        if 'default' in param.leaf:
+                            # Utiliser la valeur par défaut
+                            value = self.visit(param.leaf['default'])
+                        else:
+                            raise TypeError(f"Missing argument for parameter {param_name}")
                     else:
-                        raise TypeError(f"Missing argument for parameter '{param_name}'")
-            
+                        value = args[i]
+
+                    # Vérifier le type pour les structures
+                    if param_type not in ['int', 'string', 'bool', 'float', 'double']:
+                        struct_type = self.current_env.get_struct(param_type)
+                        if struct_type is None:
+                            raise TypeError(f"Unknown type: {param_type}")
+                        if value.type != DataType.STRUCT:
+                            raise TypeError(f"Parameter {param_name} must be of type {param_type}")
+
+                    new_env.set(param_name, value)
+
+            # Exécuter le corps de la fonction
             prev_env = self.current_env
             self.current_env = new_env
             result = self.visit(node.children[1])
             self.current_env = prev_env
             return result
-            
+
         self.current_env.define_function(func_name, function)
 
     def visit_Output(self, node):
@@ -634,16 +664,15 @@ class Interpreter:
     def visit_ArrayLiteral(self, node):
         if not node.children:
             return Value(DataType.ARRAY, [])
-            
+
         elements = []
-        current = node.children[0]
-        while current.type == 'ArrayElements':
-            elements.insert(0, self.visit(current.children[0]).value)
-            if len(current.children) > 1:
-                current = current.children[1]
-            else:
-                break
-                
+        array_elements = node.children[0]  # C'est le noeud ArrayElements
+
+        # Parcourir tous les enfants du noeud ArrayElements
+        for child in array_elements.children:
+            element = self.visit(child)
+            elements.append(element.value)  # Ajouter à la fin au lieu d'insérer au début
+
         return Value(DataType.ARRAY, elements)
 
     def visit_Identifier(self, node):
