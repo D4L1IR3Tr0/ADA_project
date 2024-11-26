@@ -21,9 +21,6 @@
 ## Introduction
 **! The ada-L project is still under development, and this is version 1.0 !**
 
-I am the only developer working on it alongside my university studies at Claude Bernard Lyon1 university, so please be understanding.
-
-
 ada-L is a simple, intuitive programming language designed for educational purposes. It combines familiar syntax with powerful features like structures and modules.
 
 ## Installation

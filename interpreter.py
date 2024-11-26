@@ -666,7 +666,7 @@ class Interpreter:
             return Value(DataType.ARRAY, [])
 
         elements = []
-        array_elements = node.children[0]  # C'est le noeud ArrayElements
+        array_elements = node.children[0]
 
         # Parcourir tous les enfants du noeud ArrayElements
         for child in array_elements.children:

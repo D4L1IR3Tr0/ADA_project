@@ -6,7 +6,7 @@ def clean_input(data):
     lines = []
     for line in data.split('\n'):
         stripped = line.strip()
-        if stripped:  # Only keep non-empty lines
+        if stripped:
             lines.append(stripped)
     return '\n'.join(lines)
 
@@ -16,7 +16,6 @@ class Node:
         self.children = children if children is not None else []
         self.leaf = leaf
         self.parent = None
-        # Set parent for all children
         for child in self.children:
             if isinstance(child, Node):
                 child.parent = self
@@ -30,7 +29,7 @@ class Node:
             ret += child.__str__(level + 1)
         return ret
 
-# Precedence rules
+# REGLES DE PRECEDENCE
 precedence = (
     ('nonassoc', 'LOWER_THAN_ELSE'),
     ('nonassoc', 'ELSE'),
@@ -46,7 +45,7 @@ precedence = (
     ('left', 'LPAREN', 'RPAREN')
 )
 
-# Grammar rules
+# REGLES DE GRAMMAIRE
 def p_program(p):
     '''program : statement_sequence'''
     p[0] = Node('Program', [p[1]])
@@ -159,12 +158,23 @@ def p_param_sequence(p):
         p[0] = Node('Parameters', [p[1]])
 
 def p_param(p):
-    '''param : ID
-            | ID ASSIGN expression'''
-    if len(p) == 4:
-        p[0] = Node('Parameter', [], {'id': p[1], 'default': p[3]})
-    else:
-        p[0] = Node('Parameter', [], {'id': p[1]})
+    '''param : TYPE ID
+            | ID ID
+            | TYPE ID ASSIGN expression
+            | ID ID ASSIGN expression'''
+    if len(p) == 5:
+        # Pour les paramètres avec valeur par défaut
+        p[0] = Node('Parameter', [], {
+            'type': p[1],
+            'id': p[2],
+            'default': p[4]
+        })
+    elif len(p) == 3:
+        # Pour les paramètres simples
+        p[0] = Node('Parameter', [], {
+            'type': p[1],
+            'id': p[2]
+        })
 
 def p_empty(p):
     '''empty :'''
@@ -181,7 +191,7 @@ def p_assignment(p):
             'member': p[3],
             'value': p[5]
         })
-    elif isinstance(p[1], Node):  # array access
+    elif isinstance(p[1], Node): # array_access ASSIGN expression
         p[0] = Node('ArrayAssignment', [p[1], p[3]])
     elif p[2] == '<-':
         p[0] = Node('Assignment', [], {'id': p[1], 'value': p[3]})
@@ -295,7 +305,6 @@ def p_function_call_or_instantiation(p):
     '''function_call_or_instantiation : ID LPAREN argument_list RPAREN'''
     # Si l'ID correspond à un type défini, c'est une instantiation
     # Sinon c'est un appel de fonction
-    # Cette logique sera gérée dans l'interpréteur
     p[0] = Node('CallOrInstantiation', [], {
         'id': p[1],
         'arguments': p[3]
@@ -310,10 +319,14 @@ def p_array_literal(p):
         p[0] = Node('ArrayLiteral', [])
 
 def p_array_elements(p):
-    '''array_elements : expression COMMA array_elements
+    '''array_elements : array_elements COMMA expression
                      | expression'''
     if len(p) == 4:
-        p[0] = Node('ArrayElements', [p[1], p[3]])
+        if isinstance(p[1], Node) and p[1].type == 'ArrayElements':
+            p[1].children.append(p[3])
+            p[0] = p[1]
+        else:
+            p[0] = Node('ArrayElements', [p[1], p[3]])
     else:
         p[0] = Node('ArrayElements', [p[1]])
 
@@ -391,18 +404,8 @@ def p_error(p):
     else:
         print("Syntax error at EOF")
 
-# Build the parser
-parser = yacc.yacc(debug=True)
 
-#def parse(data):
-#    """Parse the input after cleaning it."""
-#    try:
-#        cleaned_data = clean_input(data)
-#        return parser.parse(cleaned_data, lexer=lexer)
-#    except Exception as e:
-#        print(f"Parsing error: {str(e)}")
-#        return None
-#
+parser = yacc.yacc(debug=True)
 
 
 def parse(data):
@@ -410,7 +413,7 @@ def parse(data):
     cleaned_data = clean_input(data)
     return parser.parse(cleaned_data, lexer=lexer)
 
-# Test code
+# TEST
 if __name__ == "__main__":
     test_input = """
     make person:
