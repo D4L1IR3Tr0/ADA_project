@@ -30,10 +30,10 @@ bing is a simple, intuitive programming language designed for educational purpos
 ## Installation
 ```bash
 # Clone the repository
-git clone https://github.com/D4L1IR3Tr0/ADA_project.git
+git clone https://github.com/D4L1IR3Tr0/bing_project.git
 
-# Run an bing program
-python3 interpreter.py program.ada
+# Run a bing program
+python3 interpreter.py program.bing
 
 # To install VSCODE extension for bing
 cd extentionVSCODE
@@ -200,11 +200,11 @@ p.age <- 26
 
 ## Modules
 - For now there are two premade modules : 
-- **math.ada**
-- **io.ada**
-### Module Creation (math.ada)
+- **math.bing**
+- **io.bing**
+### Module Creation (math.bing)
 ```bing
--- math.ada
+-- math.bing
 define square(x):
     out(x * x)
 /.
@@ -216,7 +216,7 @@ define cube(x):
 
 ### Module Import and Usage
 ```bing
-@import <math.ada> as math
+@import <math.bing> as math
 
 write(math.square(4))  -- Outputs: 16
 write(math.cube(3))    -- Outputs: 27
@@ -279,7 +279,7 @@ make structName:
 /.
 
 -- Modules
-@import <module.ada> as mod
+@import <module.bing> as mod
 ```
 
 ### Common Functions
@@ -303,7 +303,7 @@ value <- read("Enter value: ")    -- Read input
 ### Best Practices
 1. Use meaningful variable and function names
 2. Comment your code for clarity
-3. Indent your code for readability
+3. Indent your code for rebingbility
 4. Break down complex problems into functions
 5. Use structures to organize related data
 6. Import modules to reuse code
