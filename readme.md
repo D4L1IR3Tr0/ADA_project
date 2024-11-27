@@ -1,4 +1,4 @@
-# ada-L - A Modern Tribute to Lovelace
+# bing - I promise this project won't be a 'could-have-been'
 
 ![Logo](logo.png)
 
@@ -19,23 +19,23 @@
 10. [Cheat Sheet](#cheat-sheet)
 
 ## Introduction
-**! The ada-L project is still under development, and this is version 1.0 !**
+**! The bing project is still under development, and this is version 1.0 !**
 
 
 <u>I am the only developer working on it alongside my university studies at Claude Bernard Lyon 1 university, so please be understanding.</u>
 
 
-ada-L is a simple, intuitive programming language designed for educational purposes. It combines familiar syntax with powerful features like structures and modules.
+bing is a simple, intuitive programming language designed for educational purposes. It combines familiar syntax with powerful features like structures and modules.
 
 ## Installation
 ```bash
 # Clone the repository
 git clone https://github.com/D4L1IR3Tr0/ADA_project.git
 
-# Run an ada-L program
+# Run an bing program
 python3 interpreter.py program.ada
 
-# To install VSCODE extension for ada-L
+# To install VSCODE extension for bing
 cd extentionVSCODE
 chmod +x install.sh
 ./install.sh
@@ -44,7 +44,7 @@ chmod +x install.sh
 ## Language Basics
 
 ### Comments
-```ada-L
+```bing
 -- Single line comment
 -* Multi-line
    comment *-
@@ -66,7 +66,7 @@ chmod +x install.sh
 - `array`: Arrays of values
 
 ### Type Declaration
-```ada-L
+```bing
 int x <- 5
 string name <- "John"
 bool isValid <- true
@@ -74,7 +74,7 @@ double price <- 3.14
 ```
 
 ### Arrays
-```ada-L
+```bing
 int numbers <- [1, 2, 3, 4, 5]
 int value <- numbers[0]  -- Access first element
 
@@ -84,7 +84,7 @@ size(numbers) -- return the size of the array work with strings
 ## Variables
 
 ### Declaration and Assignment
-```ada-L
+```bing
 -- Declaration with initialization
 int age <- 25
 
@@ -99,7 +99,7 @@ x <- y  -- x now equals 2
 ```
 
 ### Compound Assignments
-```ada-L
+```bing
 x += 5   -- Same as: x <- x + 5
 x -= 3   -- Same as: x <- x - 3
 x *= 2   -- Same as: x <- x * 2
@@ -109,7 +109,7 @@ x /= 4   -- Same as: x <- x / 4
 ## Control Structures
 
 ### If Statement
-```ada-L
+```bing
 if (condition):
     -- code
 else:
@@ -120,14 +120,14 @@ else:
 ### Loops
 
 #### Range Loop
-```ada-L
+```bing
 loop [0..5]:
     write("Hello")
 /.
 ```
 
 #### Iterator Loop
-```ada-L
+```bing
 loop i in [0..5]:
     write(i)
 /.
@@ -139,14 +139,14 @@ loop i in [0..size(array)-1]:
 ```
 
 #### While Loop
-```ada-L
+```bing
 loop (condition):
     -- code
 /.
 ```
 
 #### For Each Loop
-```ada-L
+```bing
 loop item in array:
     write(item)
 /.
@@ -155,7 +155,7 @@ loop item in array:
 ## Functions
 
 ### Function Definition
-```ada-L
+```bing
 define add(a, b):
     out(a + b)
 /.
@@ -169,7 +169,7 @@ define greet(name <- "World"):
 ```
 
 ### Function Call
-```ada-L
+```bing
 add(5, 3)
 greet()
 greet("John")
@@ -178,7 +178,7 @@ greet("John")
 ## Structures
 
 ### Structure Definition
-```ada-L
+```bing
 make person:
     int age
     string name
@@ -186,7 +186,7 @@ make person:
 ```
 
 ### Structure Usage
-```ada-L
+```bing
 -- Create instance
 person p <- person(25, "John")
 
@@ -203,7 +203,7 @@ p.age <- 26
 - **math.ada**
 - **io.ada**
 ### Module Creation (math.ada)
-```ada-L
+```bing
 -- math.ada
 define square(x):
     out(x * x)
@@ -215,7 +215,7 @@ define cube(x):
 ```
 
 ### Module Import and Usage
-```ada-L
+```bing
 @import <math.ada> as math
 
 write(math.square(4))  -- Outputs: 16
@@ -225,7 +225,7 @@ write(math.cube(3))    -- Outputs: 27
 ## Cheat Sheet
 
 ### Basic Syntax
-```ada-L
+```bing
 -- Variables
 int x <- 5
 string name <- "John"
@@ -283,7 +283,7 @@ make structName:
 ```
 
 ### Common Functions
-```ada-L
+```bing
 -- Mathematical
 math.pow(base, exp)    -- Power
 math.sqrt(x)           -- Square root
@@ -327,5 +327,5 @@ value <- read("Enter value: ")    -- Read input
 5. Test functions individually
 6. Use meaningful error messages
 
-This documentation provides a comprehensive guide to the ada-L language. For more specific use cases or advanced features, please refer to the individual sections or contact me.
+This documentation provides a comprehensive guide to the bing language. For more specific use cases or advanced features, please refer to the individual sections or contact me.
 
