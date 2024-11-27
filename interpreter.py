@@ -352,7 +352,6 @@ class Interpreter:
         # Effectuer l'opération
         if current.type in [DataType.INT, DataType.FLOAT, DataType.DOUBLE]:
             result_value = op(current.value, value.value)
-            # Conserver le type de la variable originale
             result = Value(current.type, result_value)
             self.current_env.set(name, result)
             return result
@@ -712,7 +711,7 @@ def execute(ast):
     interpreter = Interpreter()
     return interpreter.visit(ast)
 
-def run_ada_file(filename):
+def run_bing_file(filename):
     try:
         with open(filename, 'r') as file:
             source_code = file.read()
@@ -732,16 +731,16 @@ def run_ada_file(filename):
 if __name__ == "__main__":
     # Vérifie les arguments
     if len(sys.argv) != 2:
-        print("Usage: python compilateur.py <filename.ada>")
-        print("Example: python compilateur.py program.ada")
+        print("Usage: python compilateur.py <filename.bing>")
+        print("Example: python compilateur.py program.bing")
         sys.exit(1)
         
     filename = sys.argv[1]
     
     # Vérifie l'extension
-    if not filename.endswith('.ada'):
-        print("Error: File must have .ada extension")
-        print("Usage: python compilateur.py <filename.ada>")
+    if not filename.endswith('.bing'):
+        print("Error: File must have .bing extension")
+        print("Usage: python compilateur.py <filename.bing>")
         sys.exit(1)
         
-    run_ada_file(filename)
+    run_bing_file(filename)

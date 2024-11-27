@@ -72,7 +72,7 @@ def t_RANGE(t):
     return t
 
 def t_FILE(t):
-    r'[a-zA-Z0-9_]+\.(ada|txt|log|csv|json|xml|md|py)'
+    r'[a-zA-Z0-9_]+\.(bing|txt|log|csv|json|xml|md|py)'
     return t
 
 # Rule for identifiers
@@ -110,10 +110,10 @@ lexer = lex.lex()
 
 def test_lexer():
     data = """
-    -- Gestion des importation avec gestiob des erruers exemple Erreur : Le module <math.ada> est introuvable.--
-    @import <math.ada> as math
+    -- Gestion des importation avec gestiob des erruers exemple Erreur : Le module <math.bing> est introuvable.--
+    @import <math.bing> as math
 
-    x <- math.square(4)  -- Appelle la fonction square du module math.ada
+    x <- math.square(4)  -- Appelle la fonction square du module math.bing
 
 
     -- Déclaration de variables --
