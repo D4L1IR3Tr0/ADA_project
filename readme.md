@@ -19,7 +19,7 @@
 10. [Cheat Sheet](#cheat-sheet)
 
 ## Introduction
-**! The bing project is still under development, and this is version 1.0 !**
+**! The bing programming language project is still under development, and this is version 1.0 !**
 
 
 <u>I am the only developer working on it alongside my university studies at Claude Bernard Lyon 1 university, so please be understanding.</u>
